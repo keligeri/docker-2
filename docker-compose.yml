@@ -1,0 +1,12 @@
+version: '3'
+services: 
+    redis-app:
+        image: "redis:alpine"
+    consumer-app:
+        build: ./consumer-app
+        ports:
+            - "6397:6397"
+        depends_on:
+            - redis-app
+        links:
+            - "redis-app:redis-app"
